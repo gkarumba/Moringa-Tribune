@@ -81,6 +81,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'tribune.wsgi.application'
 
+# Email configurations remember to install python-decouple
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
@@ -99,27 +105,27 @@ WSGI_APPLICATION = 'tribune.wsgi.application'
 #    }
 # # production
 # else:
-DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
-}
-
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
 # DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'tribune', 
-#         'USER': 'postgres', 
-#         'PASSWORD': '123456', 
-#         'HOST': 'localhost', # the missing piece of the puzzle 
-#         'PORT': ''
-#     }
+#     'default': dj_database_url.config(
+#         default=config('DATABASE_URL')
+#     )
 # }
+
+# db_from_env = dj_database_url.config(conn_max_age=500)
+# DATABASES['default'].update(db_from_env)
+
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'tribune', 
+        'USER': 'postgres', 
+        'PASSWORD': '123456', 
+        'HOST': 'localhost', # the missing piece of the puzzle 
+        'PORT': ''
+    }
+}
 
 
 # Password validation
