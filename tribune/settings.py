@@ -104,29 +104,29 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 #        }
        
 #    }
-# # production
+# production
 # else:
-# DATABASES = {
-#     'default': dj_database_url.config(
-#         default=config('DATABASE_URL')
-#     )
-# }
-
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
-
-# ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'tribune', 
-        'USER': 'postgres', 
-        'PASSWORD': '123456', 
-        'HOST': 'localhost', # the missing piece of the puzzle 
-        'PORT': ''
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL')
+    )
 }
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
+
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'tribune', 
+#         'USER': 'postgres', 
+#         'PASSWORD': '123456', 
+#         'HOST': 'localhost', # the missing piece of the puzzle 
+#         'PORT': ''
+#     }
+# }
 
 
 # Password validation
